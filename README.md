@@ -18,4 +18,8 @@ Versões anteriores continuam disponíveis em [Releases](../../releases).
   clique em **Mais informações → Executar assim mesmo**. Nas atualizações seguintes aparece "BereiaShow".
 - Para atualizar, baixe a versão nova e instale por cima: seus shows e configurações são mantidos.
 
+## Como usar
+
+Dentro do BereiaShow, toque no menu **☰** (canto superior esquerdo) → **Ajuda — passo a passo**.
+
 Este repositório contém só os instaladores.
