@@ -1,2 +1,21 @@
-# bereiashow-releases
-BereiaShow — instaladores (downloads)
+# BereiaShow — downloads
+
+Controle de iluminação DMX para igrejas (Lumikit PRO 2).
+
+## Baixar
+
+**Versão mais nova:** [Releases → Latest](../../releases/latest) → baixe o arquivo `BereiaShow-Setup-<versão>.exe`
+em **Assets** e dê duplo clique. Não precisa de mais nada.
+
+Versões anteriores continuam disponíveis em [Releases](../../releases).
+
+## Instalar
+
+- Windows 10 ou 11 (64 bits). Não precisa instalar .NET.
+- O instalador já instala o que faltar (WebView2), libera a porta Art-Net no firewall e registra o certificado
+  do BereiaShow.
+- Na primeira instalação o Windows pode avisar "Editor desconhecido" ou "O Windows protegeu o computador":
+  clique em **Mais informações → Executar assim mesmo**. Nas atualizações seguintes aparece "BereiaShow".
+- Para atualizar, baixe a versão nova e instale por cima: seus shows e configurações são mantidos.
+
+Este repositório contém só os instaladores.
