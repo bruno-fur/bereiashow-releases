@@ -18,6 +18,10 @@ Versões anteriores continuam disponíveis em [Releases](../../releases).
   clique em **Mais informações → Executar assim mesmo**. Nas atualizações seguintes aparece "BereiaShow".
 - Para atualizar, baixe a versão nova e instale por cima: seus shows e configurações são mantidos.
 
+## Manual
+
+**[Baixar o manual do usuário (PDF)](https://github.com/bruno-fur/bereiashow-releases/releases/latest/download/Manual-BereiaShow.pdf)** — o que cada tela faz, com imagens.
+
 ## Como usar
 
 Dentro do BereiaShow, toque no menu **☰** (canto superior esquerdo) → **Ajuda — passo a passo**.
