@@ -25,6 +25,7 @@
   --radius: 16px;
 }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; }
 body { margin: 0; background: var(--bg); color: var(--text); font: 400 17px/1.6 Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
 a { color: var(--accent); }
@@ -135,10 +136,14 @@ footer a { color: var(--text-2); }
       <div class="download">
         <a id="download" class="btn-download" href="https://github.com/bruno-fur/bereiashow-releases/releases/latest">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
-          <span>Baixar para Windows<small id="download-sub">versão mais nova</small></span>
+          <span><span id="download-label">Baixar para Windows</span><small id="download-sub">versão mais nova</small></span>
         </a>
         <span class="download-meta" id="download-meta">Windows 10 ou 11 (64 bits) · não precisa instalar mais nada</span>
         <div class="secondary">
+          <a class="btn" id="download-other" hidden>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+            <span id="download-other-label">Baixar para Mac</span>
+          </a>
           <a class="btn" id="manual" href="https://github.com/bruno-fur/bereiashow-releases/releases/latest/download/Manual-BereiaShow.pdf">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2.5Z"/><path d="M8 7h6"/><path d="M8 11h6"/></svg>
             Manual do usuário (PDF)
@@ -169,6 +174,7 @@ footer a { color: var(--text-2); }
           <h3>Instale</h3>
           <p>Dê duplo clique no arquivo e siga o instalador. Ele já coloca tudo o que o programa precisa.</p>
           <div class="note">Se aparecer <strong>"O Windows protegeu o computador"</strong>, toque em <strong>Mais informações</strong> e depois em <strong>Executar assim mesmo</strong>. Só acontece na primeira instalação.</div>
+          <div class="note"><strong>No Mac:</strong> dê duplo clique no arquivo baixado e arraste o <strong>BereiaShow</strong> para <strong>Aplicativos</strong>. Na primeira vez, abra <strong>Ajustes do Sistema → Privacidade e Segurança</strong>, toque em <strong>Abrir Mesmo Assim</strong> e permita o acesso à <strong>rede local</strong>.</div>
         </div>
         <div class="step">
           <span class="step-num">3</span>
@@ -213,8 +219,8 @@ footer a { color: var(--text-2); }
       <div class="features">
         <div class="feature">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/></svg>
-          <h3>Notebook com Windows</h3>
-          <p>Windows 10 ou 11, 64 bits. Uma tela touch deixa tudo mais fácil, mas não é obrigatória.</p>
+          <h3>Notebook com Windows ou Mac</h3>
+          <p>Windows 10 ou 11 (64 bits) ou macOS 12 ou mais novo. Uma tela touch deixa tudo mais fácil, mas não é obrigatória.</p>
         </div>
         <div class="feature">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="7" width="16" height="10" rx="2"/><path d="M8 12h.01"/><path d="M12 12h.01"/><path d="M16 12h.01"/></svg>
@@ -250,14 +256,27 @@ footer a { color: var(--text-2); }
     const rel = await r.json()
     const version = (rel.tag_name || '').replace(/^v/, '')
     const exe = (rel.assets || []).find((a) => /\.exe$/i.test(a.name))
+    const mac = (rel.assets || []).find((a) => /macos.*\.(tar\.gz|zip|dmg)$/i.test(a.name))
+    // A Mac (not an iPad, which also says "Mac" but has touch) gets the Mac package as the main button.
+    const onMac = /Mac/i.test(navigator.platform || navigator.userAgent) && !(navigator.maxTouchPoints > 1)
     const pdf = (rel.assets || []).find((a) => /\.pdf$/i.test(a.name))
     const date = rel.published_at ? new Date(rel.published_at).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' }) : ''
-    if (exe) {
-      document.getElementById('download').href = exe.browser_download_url
+    const main = onMac && mac ? mac : exe
+    const other = main === mac ? exe : mac
+    if (main) {
+      document.getElementById('download').href = main.browser_download_url
+      document.getElementById('download-label').textContent = main === mac ? 'Baixar para Mac' : 'Baixar para Windows'
       document.getElementById('download-sub').textContent = `versão ${version}`
-      const mb = Math.round(exe.size / 1048576)
+      const mb = Math.round(main.size / 1048576)
+      const system = main === mac ? 'macOS 12 ou mais novo (chip Apple ou Intel)' : 'Windows 10 ou 11 (64 bits)'
       document.getElementById('download-meta').innerHTML =
-        `<strong>BereiaShow ${esc(version)}</strong> · ${mb} MB · ${esc(date)} · Windows 10 ou 11 (64 bits)`
+        `<strong>BereiaShow ${esc(version)}</strong> · ${mb} MB · ${esc(date)} · ${system}`
+    }
+    if (other) {
+      const link = document.getElementById('download-other')
+      link.href = other.browser_download_url
+      link.hidden = false
+      document.getElementById('download-other-label').textContent = other === mac ? 'Baixar para Mac' : 'Baixar para Windows'
     }
     if (pdf) for (const id of ['manual', 'manual-top']) document.getElementById(id).href = pdf.browser_download_url
 
