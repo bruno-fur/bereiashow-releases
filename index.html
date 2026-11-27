@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BereiaShow · Baixar</title>
+<meta name="description" content="BereiaShow: controle da iluminação DMX da igreja pela tela touch, com a Lumikit PRO 2. Baixe o instalador para Windows.">
+<meta property="og:title" content="BereiaShow">
+<meta property="og:description" content="Controle da iluminação da igreja pela tela touch, com a Lumikit PRO 2.">
+<meta property="og:image" content="assets/icone-256.png">
+<link rel="icon" type="image/png" href="assets/icone.png">
+<link rel="apple-touch-icon" href="assets/icone-256.png">
+<style>
+@font-face { font-family: Inter; font-weight: 400; font-display: swap; src: url(assets/fonts/inter-latin-400-normal.woff2) format('woff2'); }
+@font-face { font-family: Inter; font-weight: 600; font-display: swap; src: url(assets/fonts/inter-latin-600-normal.woff2) format('woff2'); }
+@font-face { font-family: Inter; font-weight: 700; font-display: swap; src: url(assets/fonts/inter-latin-700-normal.woff2) format('woff2'); }
+@font-face { font-family: Inter; font-weight: 800; font-display: swap; src: url(assets/fonts/inter-latin-800-normal.woff2) format('woff2'); }
+@font-face { font-family: Nunito; font-weight: 900; font-display: swap; src: url(assets/fonts/nunito-latin-900-normal.woff2) format('woff2'); }
+@font-face { font-family: 'JetBrains Mono'; font-weight: 500; font-display: swap; src: url(assets/fonts/jetbrains-mono-latin-500-normal.woff2) format('woff2'); }
+
+:root {
+  --bg: #0A0A0B; --panel: #141416; --border: #26262A; --tile: #18181B; --button: #1C1C1F;
+  --text: #F2F2F3; --text-2: #D4D4D8; --muted: #A1A1AA;
+  --accent: #3B9EFF; --accent-bg: #0E1F3A; --on-accent: #04121F; --success: #22C55E; --warn: #FBBF24;
+  --radius: 16px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 400 17px/1.6 Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: var(--accent); }
+.wrap { width: min(1120px, 100% - 40px); margin: 0 auto; }
+.mono { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.92em; }
+
+/* logo: "bereıa" + SHOW, the dot of the ı is an RGB LED */
+.logo { display: inline-flex; align-items: baseline; gap: 0.4em; font-family: Nunito, Inter, sans-serif; font-weight: 900; line-height: 1.1; text-decoration: none; color: var(--text); }
+.logo-word { font-size: 1em; letter-spacing: -0.01em; }
+.logo-i { position: relative; display: inline-block; }
+.logo-led { position: absolute; left: 50%; top: 0.1em; width: 0.24em; height: 0.24em; transform: translateX(-50%); border-radius: 50%;
+  background: conic-gradient(#ff3b3b, #ffd43b, #3bff6a, #3bd8ff, #3b6bff, #d43bff, #ff3b3b);
+  box-shadow: 0 0 0.5em rgba(59, 158, 255, 0.85); animation: led 14s linear infinite; }
+.logo-show { font-size: 0.42em; color: var(--accent); letter-spacing: 0.14em; }
+@keyframes led { to { filter: hue-rotate(360deg); } }
+
+header.top { padding: 22px 0; }
+header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+header.top .logo { font-size: 30px; }
+.top-links { display: flex; gap: 22px; flex-wrap: wrap; }
+.top-links a { color: var(--text-2); text-decoration: none; font-weight: 600; font-size: 15px; }
+.top-links a:hover { color: var(--accent); }
+
+/* hero with the light beam */
+.hero { position: relative; overflow: hidden; padding: 56px 0 40px; text-align: center; }
+.hero::before { content: ''; position: absolute; left: 50%; top: -40px; width: 900px; height: 720px; transform: translateX(-50%); pointer-events: none;
+  background: linear-gradient(to bottom, rgba(120, 190, 255, 0.20), rgba(59, 158, 255, 0));
+  clip-path: polygon(44% 0, 56% 0, 100% 100%, 0 100%); }
+.hero .wrap { position: relative; }
+.hero .logo { font-size: clamp(56px, 10vw, 104px); }
+.hero h1 { margin: 22px auto 10px; max-width: 760px; font-size: clamp(26px, 3.6vw, 38px); line-height: 1.2; font-weight: 800; letter-spacing: -0.01em; }
+.hero p.lead { margin: 0 auto 30px; max-width: 680px; color: var(--text-2); font-size: 18px; }
+
+.download { display: inline-flex; flex-direction: column; align-items: center; gap: 12px; }
+.btn-download { display: inline-flex; align-items: center; gap: 14px; padding: 18px 34px; min-height: 64px; border-radius: 14px;
+  background: var(--accent); color: var(--on-accent); text-decoration: none; font-weight: 800; font-size: 21px;
+  box-shadow: 0 10px 40px rgba(59, 158, 255, 0.35); transition: transform 120ms, box-shadow 120ms, background 120ms; }
+.btn-download:hover { background: #5aaeff; transform: translateY(-2px); box-shadow: 0 14px 48px rgba(59, 158, 255, 0.45); }
+.btn-download svg { flex: none; }
+.btn-download small { display: block; font-weight: 600; font-size: 14px; opacity: 0.8; }
+.download-meta { color: var(--muted); font-size: 14px; }
+.download-meta strong { color: var(--text-2); }
+.secondary { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 6px; }
+.btn { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 10px 20px; border-radius: 12px; background: var(--button);
+  border: 1px solid var(--border); color: var(--text); text-decoration: none; font-weight: 600; font-size: 15px; }
+.btn:hover { border-color: var(--accent); }
+
+.shot { margin: 48px auto 0; max-width: 1040px; border-radius: 18px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 30px 90px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(59, 158, 255, 0.08); }
+.shot img { display: block; width: 100%; height: auto; }
+
+section { padding: 56px 0; }
+h2 { font-size: 28px; margin: 0 0 8px; letter-spacing: -0.01em; }
+.section-lead { color: var(--muted); margin: 0 0 28px; }
+
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; counter-reset: step; }
+.step { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; }
+.step-num { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-weight: 800; margin-bottom: 12px; }
+.step h3 { margin: 0 0 6px; font-size: 19px; }
+.step p { margin: 0; color: var(--text-2); font-size: 15px; }
+.step .note { margin-top: 12px; padding: 10px 12px; border-radius: 10px; background: #2e2208; color: var(--warn); font-size: 14px; line-height: 1.5; }
+
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.feature { background: var(--tile); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+.feature svg { color: var(--accent); }
+.feature h3 { margin: 10px 0 4px; font-size: 17px; }
+.feature p { margin: 0; color: var(--muted); font-size: 15px; }
+
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 32px; align-items: center; }
+.split img { width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--border); }
+@media (max-width: 860px) { .split { grid-template-columns: 1fr; } }
+.checklist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.checklist li { display: flex; gap: 10px; align-items: flex-start; color: var(--text-2); }
+.checklist svg { flex: none; margin-top: 3px; color: var(--success); }
+
+.news { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 26px; }
+.news-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+.news-head h3 { margin: 0; font-size: 20px; }
+.news ul { margin: 8px 0 0; padding-left: 22px; color: var(--text-2); display: flex; flex-direction: column; gap: 8px; }
+.news code { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.88em; background: var(--tile); border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.badge { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--success);
+  border: 1px solid rgba(34, 197, 94, 0.5); border-radius: 999px; padding: 2px 10px; }
+
+footer { border-top: 1px solid var(--border); padding: 28px 0 40px; color: var(--muted); font-size: 14px; }
+footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+footer a { color: var(--text-2); }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="./" aria-label="BereiaShow"><span class="logo-word">bere<span class="logo-i">ı<span class="logo-led"></span></span>a</span><span class="logo-show">SHOW</span></a>
+    <nav class="top-links">
+      <a href="#instalar">Como instalar</a>
+      <a href="#novidades">Novidades</a>
+      <a id="manual-top" href="https://github.com/bruno-fur/bereiashow-releases/releases/latest/download/Manual-BereiaShow.pdf">Manual (PDF)</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="logo" aria-hidden="true"><span class="logo-word">bere<span class="logo-i">ı<span class="logo-led"></span></span>a</span><span class="logo-show">SHOW</span></div>
+      <h1>A iluminação da igreja na ponta do dedo</h1>
+      <p class="lead">Cores, intensidade, efeitos e a ordem do culto numa tela touch, ligada à <strong>Lumikit PRO 2</strong>. Funciona sem internet.</p>
+
+      <div class="download">
+        <a id="download" class="btn-download" href="https://github.com/bruno-fur/bereiashow-releases/releases/latest">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span>Baixar para Windows<small id="download-sub">versão mais nova</small></span>
+        </a>
+        <span class="download-meta" id="download-meta">Windows 10 ou 11 (64 bits) · não precisa instalar mais nada</span>
+        <div class="secondary">
+          <a class="btn" id="manual" href="https://github.com/bruno-fur/bereiashow-releases/releases/latest/download/Manual-BereiaShow.pdf">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2.5Z"/><path d="M8 7h6"/><path d="M8 11h6"/></svg>
+            Manual do usuário (PDF)
+          </a>
+          <a class="btn" href="https://github.com/bruno-fur/bereiashow-releases/releases">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/></svg>
+            Versões anteriores
+          </a>
+        </div>
+      </div>
+
+      <div class="shot"><img src="assets/operacao.jpg" width="1920" height="1080" alt="Tela de Operação do BereiaShow: grupos de luzes, intensidade, cores, efeitos e a ordem do culto"></div>
+    </div>
+  </section>
+
+  <section id="instalar">
+    <div class="wrap">
+      <h2>Como instalar</h2>
+      <p class="section-lead">Três passos. Na primeira vez leva uns 5 minutos.</p>
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">1</span>
+          <h3>Baixe</h3>
+          <p>Toque em <strong>Baixar para Windows</strong>. O arquivo <span class="mono">BereiaShow-Setup</span> vai para a pasta Downloads.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">2</span>
+          <h3>Instale</h3>
+          <p>Dê duplo clique no arquivo e siga o instalador. Ele já coloca tudo o que o programa precisa.</p>
+          <div class="note">Se aparecer <strong>"O Windows protegeu o computador"</strong>, toque em <strong>Mais informações</strong> e depois em <strong>Executar assim mesmo</strong>. Só acontece na primeira instalação.</div>
+        </div>
+        <div class="step">
+          <span class="step-num">3</span>
+          <h3>Conecte a Lumikit</h3>
+          <p>Ligue o cabo de rede do notebook na Lumikit, abra o BereiaShow e toque em <strong>menu ☰ → Conectar Lumikit</strong>. O assistente confere tudo e configura o computador com um toque.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split">
+      <div>
+        <h2>Pronto para o culto</h2>
+        <p class="section-lead">Pensado para quem opera a luz ao vivo, sem precisar entender de DMX.</p>
+        <ul class="checklist">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span><strong>A luz não para:</strong> se a tela travar, a luz continua e o programa se recupera sozinho.</span></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span><strong>Ordem do culto:</strong> cada momento com a sua luz, e o botão PRÓXIMO avança.</span></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span><strong>Efeitos no tempo da música:</strong> strobe, pulso, onda e chase sincronizados entre aparelhos diferentes.</span></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span><strong>Cadastro fácil:</strong> diga "tenho 8 PARs iguais" e o programa dá o endereço DMX de cada um.</span></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span><strong>Nada se perde:</strong> salva sozinho, com backups e recuperação se o computador desligar de repente.</span></li>
+        </ul>
+      </div>
+      <img src="assets/conectar.jpg" width="1124" height="866" alt="Assistente Conectar Lumikit: passos de cabo, programas, IP do computador, resposta da Lumikit e Wi-Fi">
+    </div>
+  </section>
+
+  <section id="novidades">
+    <div class="wrap">
+      <h2>Novidades</h2>
+      <p class="section-lead">O que mudou na versão mais nova. Para atualizar, baixe e instale por cima: seus shows e configurações continuam.</p>
+      <div class="news" id="news">
+        <div class="news-head"><h3>Versão mais nova</h3></div>
+        <p><a href="https://github.com/bruno-fur/bereiashow-releases/releases/latest">Ver as novidades no GitHub</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>O que você precisa</h2>
+      <div class="features">
+        <div class="feature">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/></svg>
+          <h3>Notebook com Windows</h3>
+          <p>Windows 10 ou 11, 64 bits. Uma tela touch deixa tudo mais fácil, mas não é obrigatória.</p>
+        </div>
+        <div class="feature">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="7" width="16" height="10" rx="2"/><path d="M8 12h.01"/><path d="M12 12h.01"/><path d="M16 12h.01"/></svg>
+          <h3>Lumikit PRO 2</h3>
+          <p>Ligada ao notebook por cabo de rede. Duas saídas DMX, com até 512 canais cada.</p>
+        </div>
+        <div class="feature">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8.8a15 15 0 0 1 20 0"/><path d="M5.5 12.4a10 10 0 0 1 13 0"/><path d="M9 16a5 5 0 0 1 6 0"/><path d="M12 19.5h.01"/><path d="M3 3l18 18"/></svg>
+          <h3>Sem internet</h3>
+          <p>A internet só é usada para baixar. No culto, tudo roda no próprio computador.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>BereiaShow · controle de iluminação DMX para igrejas</span>
+    <span><a href="https://github.com/bruno-fur/bereiashow-releases/releases">Todas as versões</a></span>
+  </div>
+</footer>
+
+<script>
+// Points the buttons at the newest installer and shows its version, size and what changed.
+// Without this (no JavaScript or GitHub offline) the buttons still open the latest release page.
+(async () => {
+  const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  const inline = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/`(.+?)`/g, '<code>$1</code>')
+  try {
+    const r = await fetch('https://api.github.com/repos/bruno-fur/bereiashow-releases/releases/latest', { headers: { Accept: 'application/vnd.github+json' } })
+    if (!r.ok) return
+    const rel = await r.json()
+    const version = (rel.tag_name || '').replace(/^v/, '')
+    const exe = (rel.assets || []).find((a) => /\.exe$/i.test(a.name))
+    const pdf = (rel.assets || []).find((a) => /\.pdf$/i.test(a.name))
+    const date = rel.published_at ? new Date(rel.published_at).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' }) : ''
+    if (exe) {
+      document.getElementById('download').href = exe.browser_download_url
+      document.getElementById('download-sub').textContent = `versão ${version}`
+      const mb = Math.round(exe.size / 1048576)
+      document.getElementById('download-meta').innerHTML =
+        `<strong>BereiaShow ${esc(version)}</strong> · ${mb} MB · ${esc(date)} · Windows 10 ou 11 (64 bits)`
+    }
+    if (pdf) for (const id of ['manual', 'manual-top']) document.getElementById(id).href = pdf.browser_download_url
+
+    // Release notes: the "- item" list of the changelog (continuation lines are indented).
+    const items = []
+    for (const line of (rel.body || '').split(/\r?\n/)) {
+      if (/^\s*[-*]\s+/.test(line)) items.push(line.replace(/^\s*[-*]\s+/, ''))
+      else if (/^\s{2,}\S/.test(line) && items.length) items[items.length - 1] += ' ' + line.trim()
+    }
+    if (items.length) {
+      document.getElementById('news').innerHTML = `
+        <div class="news-head"><h3>Versão ${esc(version)}</h3><span class="badge">mais nova · ${esc(date)}</span></div>
+        <ul>${items.map((i) => `<li>${inline(i)}</li>`).join('')}</ul>`
+    }
+  } catch { /* keeps the plain links */ }
+})()
+</script>
+</body>
+</html>
